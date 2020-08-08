@@ -1,0 +1,9 @@
+.image__show{
+    max-width: 300px;
+    max-height: 300px;
+    
+}
+.image__show img{
+    height: 100%;
+    width: 100%;
+}

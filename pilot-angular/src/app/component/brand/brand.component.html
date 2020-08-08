@@ -1,0 +1,90 @@
+<app-nav></app-nav>
+
+<div class="form__container grid wide">
+
+  <button (click)="insertBrand()" class="bt-create" mat-stroked-button color="primary">
+        <mat-icon>create</mat-icon>
+        Create
+    </button>
+
+  <form action="">
+    <input type="text" id="searchName" name="searchName" class="form__input" placeholder="Brand Name"
+      [(ngModel)]="nameSearch">
+    <button type="submit" class="form__btn" (click)="searchBrandsList(nameSearch)">Search</button>
+  </form>
+
+</div>
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- ID Column -->
+  <ng-container matColumnDef="brandId">
+    <mat-header-cell *matHeaderCellDef> ID </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.brandId}} </mat-cell>
+  </ng-container>
+
+  <!-- Brand Name Column -->
+  <ng-container matColumnDef="brandName">
+    <mat-header-cell *matHeaderCellDef> Brand Name </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.brandName}} </mat-cell>
+  </ng-container>
+
+  <!-- Logo Column -->
+  <ng-container matColumnDef="logo">
+    <mat-header-cell *matHeaderCellDef > Logo </mat-header-cell>
+    <mat-cell *matCellDef="let element" (click)="showLogo(element)">
+      <img src="../../../assets/logo/{{element.logo}}" class="image">
+    </mat-cell>
+  </ng-container>
+
+  <!-- Description Column -->
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+    <mat-cell *matCellDef="let row">
+      <span class="mobile-label"></span>
+      <button mat-icon-button color="primary" (click)="update(row)">
+        <span class="material-icons"> edit </span>
+      </button>
+      <button mat-icon-button color="warn" (click)="deleteBrand(row)">
+        <span class="material-icons"> delete </span>
+      </button>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+
+
+<!-- Pagination -->
+<ul class="pagination pagination-sm justify-content-end">
+  <li class="page-item" [ngClass]="{'disabled': currentPage === 0}">
+    <button class="page-link" matTooltip="First page" (click)="setPageChange(0)">
+      << </button>
+  </li>
+  <li class="page-item" [ngClass]="{'disabled': currentPage === 0}">
+    <button class="page-link" matTooltip="Previous page" (click)="setPageChange(currentPage - 1)">
+      < </button>
+  </li>
+  <li class="page-item" *ngFor="let page of pageNumbersList">
+    <button class="page-link" [ngClass]="{'pager': page - 1 === currentPage}" matTooltip="Page {{ page }}"
+      (click)="setPageChange(page - 1)">
+      {{ page }}
+    </button>
+  </li>
+  <li class="page-item" [ngClass]="{'disabled': currentPage === totalPage - 1}">
+    <button class="page-link" matTooltip="Next page" (click)="setPageChange(currentPage + 1)">
+      >
+    </button>
+  </li>
+  <li class="page-item" [ngClass]="{'disabled': currentPage === totalPage - 1}">
+    <button class="page-link" matTooltip="Last page" (click)="setPageChange(totalPage - 1)">
+      >>
+    </button>
+  </li>
+</ul>

@@ -1,0 +1,31 @@
+<!-- <div class="delete">
+    <strong>Confirm! </strong><br>
+    <span>Do you want to delete ?</span><br><br>
+    <div class="bt-confirm">
+        <button class="yes btn btn-primary" (click)="confirmDelete()">Yes</button>
+        <button class="no btn btn-secondary" (click)="closeDialg()">No</button>
+    </div>
+</div> -->
+
+<div id="form-del">
+    <!-- <button type="submit" class="btn-x" [mat-dialog-close]="false">
+        <mat-icon>close</mat-icon>
+    </button> -->
+    <div class="form-title d-flex justify-content-start align-items-center">
+        <mat-icon>help_outline</mat-icon>
+      <span class="content-span full-width">
+          Bạn có muốn xóa dữ liệu này không?
+      </span>
+    </div>
+    <div class="btn-del">
+        <button type="button" mat-raised-button color="warn" (click)="confirmDelete()">
+           <mat-icon>check</mat-icon> Yes
+        </button>
+        <button type="button" mat-raised-button color="warn" (click)="closeDialg()">
+            <mat-icon>close</mat-icon> No
+        </button>
+    </div>
+</div>
+
+
+

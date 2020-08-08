@@ -1,0 +1,45 @@
+.image {
+  height: 50px;
+  width: 50px;
+}
+.mat-form-field {
+  display: flex;
+}
+
+.form__container {
+  margin: 15px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.form__container-form{
+  display: flex;
+}
+.form__input {
+  padding: 6px 10px;
+  /* border-radius : 1px; */
+}
+.form__group {
+  margin: 0px 45px;
+}
+.form__group label {
+  margin-right: 10px;
+}
+.form__btn {
+  border: none;
+  outline: none;
+  padding: 8px 15px;
+  background: blue;
+  min-width: 100px;
+  color: #fff;
+  border-radius: 2px;
+  cursor: pointer;
+}
+.lable {
+  margin-right: 23px;
+}
+
+.pager {
+  background-color: dodgerblue;
+  color: white;
+}

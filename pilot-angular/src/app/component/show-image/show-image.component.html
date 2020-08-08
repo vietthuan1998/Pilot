@@ -1,0 +1,12 @@
+<div>
+    <div class="image__show">
+        <ng-container *ngIf="flagLogo; else flagImage">
+            <img src="../../../assets/logo/{{image}}" alt="">
+        </ng-container>
+        <ng-template #flagImage>
+            <img src="../../../assets/image/{{image}}" alt="">
+            
+        </ng-template>
+        
+    </div>
+</div>

@@ -1,0 +1,150 @@
+<app-nav></app-nav>
+
+<div class="grid wide form__container" >
+    <button (click)="insert()" class="bt-create" mat-stroked-button color="primary">
+        <mat-icon>create</mat-icon>
+        Create
+    </button>
+
+    <form class="gird wide form__container-form" [formGroup]="formSearch" >
+        <div class="form__group">
+            <input type="text" class="form__input" Placeholder="Product Name"
+                 formControlName="productName">
+        </div>
+    
+        <div class="form__group">
+            <!-- <label for="" class="lable">Price From </label> -->
+            <div class="form-field">
+                <select class="form-control" formControlName="brandName" >
+                    <option value=""> Brand Name </option>
+                    <option *ngFor="let brandName of brandNamesList" [value]="brandName"> {{ brandName }} </option>
+                </select>
+            </div>
+        </div>
+    
+        <div class=" form__group">
+            <!-- <label for="" class="lable">Price From </label> -->
+            <div class="form-field">
+                <select class="form-control" formControlName="priceFrom">
+                    <option value="0"> Price From </option>
+                    <option value="1000000"> {{ 1000000 | currency:"VND" }} </option>
+                    <option value="3000000"> {{ 3000000 | currency:"VND" }} </option>
+                    <option value="6000000"> {{ 6000000 | currency:"VND" }} </option>
+                    <option value="10000000"> {{ 10000000 | currency:"VND" }} </option>
+                    <option value="25000000"> {{ 25000000 | currency:"VND" }} </option>
+                </select>
+            </div>
+        </div>
+        <div class=" form__group">
+            <!-- <label for="" class="lable">Price To </label> -->
+            <div class="form-field">
+                <select class="form-control" formControlName="priceTo">
+                    <option value="0"> Price From </option>
+                    <option value="1000000"> {{ 1000000 | currency:"VND" }} </option>
+                    <option value="3000000"> {{ 3000000 | currency:"VND" }} </option>
+                    <option value="6000000"> {{ 6000000 | currency:"VND" }} </option>
+                    <option value="10000000"> {{ 10000000 | currency:"VND" }} </option>
+                    <option value="25000000"> {{ 25000000 | currency:"VND" }} </option>
+                </select>
+            </div>
+        </div>
+        <div class="">
+            <button class="form__btn" (click)="searchProductsList(formSearch.value)">Search</button>
+        </div>
+    </form>
+</div>
+
+
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Position Column -->
+    <ng-container matColumnDef="productId">
+        <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.productId}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="productName">
+        <mat-header-cell *matHeaderCellDef> Product </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.productName}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="quantity">
+        <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.quantity}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="price">
+        <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.price | currency:"VND"}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="brandEntity">
+        <mat-header-cell *matHeaderCellDef> Brand Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.brandEntity.brandName}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="saleDate">
+        <mat-header-cell *matHeaderCellDef> Openning For Sale </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.saleDate | date:'yyyy-MM-dd'}} </mat-cell>
+    </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="image">
+        <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
+        <mat-cell *matCellDef="let element" (click)="showLogo(element)">
+            <img src="../../../assets/image/{{element.image}}" class="image">
+        </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+        <mat-cell *matCellDef="let row">
+            <span class="mobile-label"></span>
+            <button mat-icon-button color="primary" (click)="update(row)">
+                <span class="material-icons"> edit </span>
+            </button>
+            <button mat-icon-button color="warn" (click)="delete(row)">
+                <span class="material-icons"> delete </span>
+            </button>
+        </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
+
+<div class="">
+    
+    
+    <!-- Pagination -->
+    <ul class="pagination pagination-sm justify-content-end">
+        <li class="page-item" [ngClass]="{'disabled': currentPage === 0}">
+            <button class="page-link" matTooltip="First page" (click)="setPageChange(0)">
+                << </button>
+        </li>
+        <li class="page-item" [ngClass]="{'disabled': currentPage === 0}">
+            <button class="page-link" matTooltip="Previous page" (click)="setPageChange(currentPage - 1)">
+                < </button>
+        </li>
+        <li class="page-item" *ngFor="let page of pageNumbersList">
+            <button class="page-link" [ngClass]="{'pager': page -1 === currentPage}" matTooltip="Page {{ page }}"
+                (click)="setPageChange(page - 1)">
+                {{ page }}
+            </button>
+        </li>
+        <li class="page-item" [ngClass]="{'disabled': currentPage === totalPage - 1}">
+            <button class="page-link" matTooltip="Next page" (click)="setPageChange(currentPage + 1)">
+                >
+            </button>
+        </li>
+        <li class="page-item" [ngClass]="{'disabled': currentPage === totalPage - 1}">
+            <button class="page-link" matTooltip="Last page" (click)="setPageChange(totalPage - 1)">
+                >>
+            </button>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,13 @@
+<nav class="nav">
+    <div>
+      <button mat-raised-button="mat-raised-button" class="button" [routerLink]="['/product']" routerLinkActive="router-link-active" >Product</button>
+    <button mat-raised-button="mat-raised-button" class="button"[routerLink]="['/brand']" routerLinkActive="router-link-active" >Brand</button>
+    </div>
+    <div>
+        <button mat-raised-button="mat-raised-button" *ngIf="!check" class="button" 
+          (click)="doLogin()" >Log In</button>
+        <button mat-raised-button="mat-raised-button" *ngIf="check" class="button" 
+          (click)="doLogin()">Log Out</button>
+          <!-- <button (click)="doLogin()"> do login</button> -->
+    </div>
+  </nav>

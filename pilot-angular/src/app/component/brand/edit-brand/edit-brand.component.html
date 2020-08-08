@@ -1,0 +1,84 @@
+<form class="form__container" action="" [formGroup]="formEdit" autocomplete="off" (submit)="onSubmit()">
+    <h2 mat-dialog-title>Edit Brand</h2>
+
+    <div class="form__group">
+        <label class="form__group-label"> Brand Name <span class="check">*</span> </label>
+        <input type="text" class="form__group-input" formControlName="brandName" placeholder="Enter Brand Name"
+            [(ngModel)]="brandSearch" (keyup)="checkBrandName(brandSearch)" name="brandName">
+    </div>
+    <div class="validate">
+        <span *ngIf="flagBrandName1"> Brand đã tồn tại !</span>
+        <span *ngIf="flagBrandName2"> Vui lòng nhập trường ở trên !</span>
+    </div>
+
+    <div class="form__group">
+        <label class="form__group-label"> Description </label>
+        <textarea placeholder="Enter description" class="form__group-input" formControlName="description"
+            rows="3"></textarea>
+    </div>
+
+    <div class="form__group">
+        <!-- <label class="form__group-label"> Logo <span class="check">*</span> </label>
+        <input type="file" class="form__group-file" formControlName="logo">
+        <div class="img-space">
+            <ng-template #elseTemplate>
+                <img src="./../../../../assets/logo/demo.png" class="img-responsive">
+            </ng-template>
+        </div> -->
+
+        <!-- ============================ -->
+        <fieldset class="form-group">
+
+            <label>Upload Logo</label>
+            <div class="custom-file fileInputProfileWrap">
+                <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile" formControlName="logo">
+                <div class="img-space">
+                    <ng-container *ngIf="isImageSaved; else elseTemplate">
+                        <img [src]="cardImageBase64" />
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                        <img src="../../../../assets/logo/{{logoName}}" class="img-responsive">
+                    </ng-template>
+                </div>
+            </div>
+            
+        </fieldset>
+        <!-- ============================ -->
+    </div>
+    <div class="validate">
+        <span *ngIf="flagLogo"> Vui lòng chọn ảnh !</span>
+    </div>
+
+    <!-- ===================================================== -->
+    <!-- <fieldset class="form-group">
+
+        <label>Upload Logo</label>
+        {{imageError}}
+        <div class="custom-file fileInputProfileWrap">
+            <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile" 
+                formControlName="logo">
+            <div class="img-space">
+
+                <ng-container *ngIf="isImageSaved; else elseTemplate">
+                    <img [src]="cardImageBase64" />
+                </ng-container>
+                <ng-template #elseTemplate>
+                    <img src="./../../../../assets/logo/demo.png" class="img-responsive">
+                </ng-template>
+
+            </div>
+
+        </div>
+    </fieldset>
+    <div class="validate">
+        <span *ngIf="flagLogo"> Vui lòng chọn ảnh !</span>
+    </div> -->
+    <!-- ===================================================== -->
+
+
+    <div class="group__btns">
+        <button type="submit" class="group__btn-submit bg-danger" (click)="editBrand(formEdit.value)">Save</button>
+        <button type="button" class="group__btn-submit bg-secondary group__btn-submit--cancel"
+            (click)=closeDialog()>Cancel</button>
+    </div>
+</form>

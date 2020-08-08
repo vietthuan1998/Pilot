@@ -1,0 +1,107 @@
+<h2 mat-dialog-title>Add Product</h2>
+<form class="form__container" action="" [formGroup]="formEdit" autocomplete="off" (submit)="onSubmit()">
+    
+    <div class="form__container-validate">
+        <div class="form__container-1">
+            <div class="form__group">
+                <label class="form__group-label"> Product Name <span class="check">*</span> </label>
+                <input type="text" class="form__group-input" formControlName="productName" placeholder="Enter Product Name"
+                    [(ngModel)]="productSearch">
+            </div>
+            <div class="validate">
+                <span *ngIf="flagProductName"> Vui lòng nhập trường ở trên !</span>
+            </div>
+        
+            <div class="form__group">
+                <label class="form__group-label"> Quantity <span class="check">*</span> </label>
+                <input type="number" class="form__group-input" formControlName="quantity" >
+                
+            </div>
+            <div class="validate">
+                <span *ngIf="flagQuantity"> Vui lòng nhập trường ở trên !</span>
+            </div>
+        
+            <div class="form__group">
+                <!-- <label class="form__group-label">Brand Name </label>
+                <div class="form-field">
+                    <select class="form-control" formControlName="brandName" >
+                        <option value=""> Brand Name </option>
+                        <option *ngFor="let brandName of bra    ndNamesList" [value]="brandName"> {{ brandName }} </option>
+                    </select>
+                </div>
+                <div class="validate">
+                    <span *ngIf="flagBrandName"> Vui lòng chọn Brand !</span>
+                </div> -->
+                <label class="form__group-label"> Price <span class="check">*</span> </label>
+                <input type="number" step="1000000"  class="form__group-input" formControlName="price" >
+                
+            </div>
+            <div class="validate">
+                <span *ngIf="flagPrice"> Vui lòng nhập trường ở trên !</span>
+            </div>
+        </div>
+    <!-- =============================================================================== -->
+        <div class="form__container-1">
+            <div class="form__group">
+                <label class="form__group-label"> Sale Date </label>
+                <input type="date" class="form__group-input" formControlName="saleDate" placeholder="Enter Product Name">
+            </div>
+            <div class="validate">
+                <span *ngIf="flagDate"> Vui lòng nhập trường ở trên !</span>
+            </div>
+        
+            <div class="form__group">
+                <label class="form__group-label"> Description </label>
+                <textarea placeholder="Enter description" class="form__group-input" 
+                    formControlName="description" rows="2"></textarea>
+            </div>
+        
+            <div class="form__group">
+                <label class="form__group-label">Brand Name <span class="check">*</span></label>
+                <div class="form-field">
+                    <select class="form-control" formControlName="brandName" >
+                        <option value=""> Brand Name </option>
+                        <option *ngFor="let brandName of brandNamesList" [value]="brandName"> {{ brandName }} </option>
+                    </select>
+                </div>
+                
+            </div>
+            <div class="validate">
+                <span *ngIf="flagBrandName"> Vui lòng chọn Brand !</span>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===================================================== -->
+    <div class="form__container-logo">
+        <fieldset class="form-group">
+            <label>Upload Logo</label>
+            <span>{{imageError}}</span>
+            <div class="custom-file fileInputProfileWrap">
+                <input type="file" (change)="fileChangeEvent($event)" class="fileInputProfile" formControlName="image">
+                <div class="img-space">
+                    <ng-container *ngIf="isImageSaved; else elseTemplate">
+                        <img [src]="cardImageBase64" />
+                    </ng-container>
+                    <ng-template #elseTemplate>
+                        <img src="../../../../assets/logo/demo.png" class="img-responsive">
+                    </ng-template>
+                </div>
+            </div>
+            <div class="validate">
+                <span *ngIf="flagLogo"> Vui lòng chọn ảnh !</span>
+            </div>
+        </fieldset>        
+    </div>
+    
+    <!-- ===================================================== -->
+
+
+    <div class="group__btns">
+        <button type="submit" class="group__btn-submit bg-danger"
+            (click)="insertBrand(formEdit.value)">Save</button>
+        <button type="button" class="group__btn-submit bg-secondary group__btn-submit--cancel"
+            (click)=closeDialog()>Cancel</button>
+    </div>
+</form>

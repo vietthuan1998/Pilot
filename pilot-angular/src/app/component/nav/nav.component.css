@@ -1,0 +1,14 @@
+.nav {
+    /* background: red; */
+    background: linear-gradient(-180deg, #8e8e8e, #fff);
+    box-shadow: 0 0 4px 0px;
+    justify-content: space-between;
+  }
+  .button {
+    margin: 10px 5px;
+    box-shadow: 2px 2px #888888;
+    width: 90px;
+  }
+  .router-link-active{
+    background: orange;
+  }

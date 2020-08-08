@@ -1,0 +1,60 @@
+.bt-confirm button{
+    margin: 0 15px;
+}
+
+
+#form-del {
+    width: 450px;
+    position: relative;
+}
+#form-del .btn-x {
+    position: absolute;
+    content: "";
+    width: 40px;
+    height: 40px;
+    right: -24px;
+    top: -24px;
+    border: none;
+    background-color: none;
+    outline: 0;
+    cursor: pointer;
+    transition: 0.4s;
+    background: transparent;
+}
+#form-del .btn-x .mat-icon {
+    line-height: 40px;
+}
+#form-del .btn-x:hover {
+    background: #F44336;
+    color: #fff;
+}
+.form-title {
+    padding-top: 30px;
+}
+.form-title .mat-icon {
+    margin: -25px 43px 0;
+    font-size: 50px;
+    color: #006CC9;
+}
+.form-title .content-span {
+    text-align: center;
+    font-size: 17px;
+    font-weight: 300;
+    font-style: italic;
+    color: #000;
+}
+.btn-del {
+    /* background: #F0F0F0; */
+    margin-top: 20px;
+    padding: 10px 0;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.btn-del .mat-raised-button {
+    line-height: 30px;
+    width: 90px;
+}
+.btn-del .mat-raised-button:nth-child(2) {
+    margin: 0 30px;
+}

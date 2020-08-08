@@ -1,0 +1,26 @@
+<div style="display: flex; justify-content: center;">
+    <form class="form__container" action="" [formGroup]="formLogin">
+        <div class="form__group">
+            <label class="form__group-label"> User Name </label>
+            <input type="text" class="form__group-input" formControlName="userName" placeholder="Enter User Name">
+        </div>
+        <div class="validate">
+            <span *ngIf="flagUserName"> UserName không tồn tại !</span>
+            <span *ngIf="flagUserName1"> UserName không được để trống !</span>
+        </div>
+
+        <div class="form__group">
+            <label class="form__group-label"> Password </label>
+            <input type="password" class="form__group-input" formControlName="password" placeholder="Enter Password">
+        </div>
+        <div class="validate">
+            <span *ngIf="flagPassword"> Password không chính xác !</span>
+            <span *ngIf="flagRole"> Bạn không có quyền đăng nhập !</span>
+            <span *ngIf="flagPassword1"> Password không được để trống !</span>
+        </div>
+
+        <div class="group__btns">
+            <button type="submit" class="group__btn-submit bg-danger" (click)="login(formLogin.value)">Login</button>
+        </div>
+    </form>
+</div>
